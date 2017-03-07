@@ -1,0 +1,79 @@
+
+//Générique
+a{
+  color: $primary-color;
+}
+
+// header
+header{
+  background: $light-gray;
+  margin-bottom: 40px;
+  h1{
+    color: $primary-color;
+    margin: 0;
+  }
+  .top-bar{
+    padding: 0.5em 0;
+  }
+  .column{
+    height: 55px;
+    line-height: 55px;
+  }
+  .top-bar-right{
+    text-align: right;
+  }
+}
+
+#login{
+  input{
+    margin-bottom: 30px;
+  }
+  .button{
+    margin-top: 20px;
+  }
+}
+
+#application{
+  ul{
+    .candidature{
+      border: solid 1px $primary-color;
+      list-style: none;
+      margin: 15px 0;
+      padding: 15px;
+      >p{
+        margin: 5px 0;
+      }
+    }
+  }
+  .update-form{
+    position: relative;
+    padding: 25px 20px 0 20px;
+    .close{
+      cursor: pointer;
+      display: block;
+      position: absolute;
+      right: 0px;
+      top: 8px;
+      height: 30px;
+      width: 30px;
+      span{
+        display: block;
+        height: 4px;
+        width: 100%;
+        background: $primary-color;
+        transform: rotate(45deg);
+        &:after{
+          content:'';
+          display: block;
+          height: 4px;
+          width: 100%;
+          background: $primary-color;
+          transform: rotate(-90deg);
+        }
+      }
+    }
+  }
+  ul{
+    margin: 0;
+  }
+}

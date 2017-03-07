@@ -1,0 +1,31 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      <title></title>
+      <meta name="description" content="">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+      <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    </head>
+    <body ng-app="TestApp">
+    <div id="main-container" ng-controller="mainCtrl as $mctrl">
+      <header>
+          <div class="top-bar row">
+            <div class="medium-6 small-12 column">
+              <h1>Gestionnaire de candidatures</h1>
+            </div>
+            <div class="top-bar-right medium-6 small-12 column">
+              <a ng-show="$mctrl.logged()" ng-click="$mctrl.logout()">Déconnexion</a>
+            </div>
+          </div>
+        </header>
+
+        <div ng-view></div>
+
+    </div>
+
+      <script src="dist/bundle.js"></script>
+    </body>
+</html>

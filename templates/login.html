@@ -1,0 +1,24 @@
+<div id="login" ng-controller="loginCtrl as $ctrl" class="container row">
+  <div class="medium-6 small-12 column">
+    <h2>Connectez-vous</h2>
+    <form action="">
+      <label for="email">Email :</label>
+      <input name="email" type="text" placeholder="email" ng-model="$ctrl.formLogin.email">
+      <label for="password">Password :</label>
+      <input name="password" type="password" placeholder="password" ng-model="$ctrl.formLogin.password">
+      <a class="button" ng-click="$ctrl.login()">Connection</a>
+    </form>
+    <p>{{user.email}}</p>
+  </div>
+
+  <div class="medium-6 small-12 column">
+    <h2>Créer un compte</h2>
+    <form action="">
+      <label for="create-email">Email</label>
+      <input name="create-email" type="text" placeholder="email" ng-model="$ctrl.formCreate.createEmail">
+      <label for="createPassword">Password</label>
+      <input name="createPassword" type="text" placeholder="Password" ng-model="$ctrl.formCreate.createPassword">
+      <a class="button" ng-click="$ctrl.createAccount()">Créer un compte</a>
+    </form>
+  </div>
+</div>

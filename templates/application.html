@@ -1,0 +1,57 @@
+<div id="application" ng-controller="applicationCtrl as $ctrl" class="container row">
+  <div class="title medium-12 column">
+    <h3>Vos candidature !</h3>
+  </div>
+  <div class="addCand medium-6 small-12 column">
+    <form action="">
+      <label for="entName">Nom de l'entreprise :</label>
+      <input name="entName" type="text" ng-model="$ctrl.formAddCand.name">
+      <label for="jobLink">Lien de l'offre :</label>
+      <input name="jobLink" type="text" ng-model="$ctrl.formAddCand.link">
+      <label for="candSent">Candidature envoyée :</label>
+      <select name="candSent" ng-model="$ctrl.formAddCand.sent">
+        <option value="Oui">Oui</option>
+        <option value="Non">Non</option>
+      </select>
+      <label for="entAddress">Adresse :</label>
+      <input name="entAddress" type="text" ng-model="$ctrl.formAddCand.address">
+      <a class="button" ng-click="$ctrl.addCand()">Ajouter candidature</a>
+    </form>
+  </div>
+  <div class="medium-6 small-12 column">
+    <ul>
+      <!-- {{ $ctrl.candidatures }} -->
+
+      <li class="candidature"
+          ng-repeat="(key, candidature) in $ctrl.candidatures">
+          <div ng-hide="show">
+            <p>Nom de l'entreprise : <pre>{{ candidature.name }}</pre></p>
+            <p>Adresse : <pre>{{ candidature.address }}</pre></p>
+            <p>Candidature envoyée :<pre>{{ candidature.sent }}</pre></p>
+            <a href="{{ candidature.link }}" target="_blank">Aller voir l'offre</a>
+            <a class="delete" ng-click="$ctrl.deleteCandidature(key)">supprimer</a>
+            <a ng-click="show=true">Modifier candidature</a>
+          </div>
+
+        <form class="update-form" ng-show="show">
+          <div class="close" ng-click="show=false"><span></span></div>
+          <label for="entName">Nom de l'entreprise :</label>
+          <input name="entName" type="text" ng-model="candidature.formUpdate.name">
+          <label for="jobLink">Lien de l'offre :</label>
+          <input name="jobLink" type="text" ng-model="candidature.formUpdate.link">
+          <label for="candSent">Candidature envoyée :</label>
+          <select name="candSent" ng-model="candidature.formUpdate.sent">
+            <option value="true">Oui</option>
+            <option value="false">Non</option>
+          </select>
+          <label for="entAddress">Adresse :</label>
+          <input name="entAddress" type="text" ng-model="candidature.formUpdate.address">
+          <a class="button" ng-click="$ctrl.updateCandidature(key)">
+            Modifier candidature
+          </a>
+
+        </form>
+      </li>
+    </ul>
+  </div>
+</div>
