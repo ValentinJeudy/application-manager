@@ -27,9 +27,7 @@ export default function AuthFactory($firebase, $location, $rootScope){
         } else {
           alert(errorMessage);
         }
-        console.log(error);
       }).then(function(response){
-
         console.log(response);
       })
   };
@@ -46,7 +44,6 @@ export default function AuthFactory($firebase, $location, $rootScope){
           } else {
             alert(errorMessage);
           }
-          console.log(error);
         }).then(function(response) {
           $rootScope.$apply(() => {
             $location.path('/application');
@@ -60,11 +57,16 @@ export default function AuthFactory($firebase, $location, $rootScope){
 
   AuthFactory.checkAuth = function(){
     return auth.onAuthStateChanged((user) => {
-      console.log(user);
       if (user) {
         this.isLogged = true;
+        $rootScope.$apply(() => {
+          $location.path('/application');
+        });
       } else {
         this.isLogged = false;
+        $rootScope.$apply(() => {
+          $location.path('/');
+        });
       }
     });
   };

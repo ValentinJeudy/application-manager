@@ -49,7 +49,6 @@ export default function CandFactory($rootScope, $timeout){
           };
         });
       });
-
     };
 
 
