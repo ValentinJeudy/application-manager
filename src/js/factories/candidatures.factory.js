@@ -51,7 +51,6 @@ export default function CandFactory($rootScope, $timeout){
       });
     };
 
-
     CandFactory.deletePost = function(key){
       $timeout(() => {
         $rootScope.$apply(() => {
@@ -62,6 +61,10 @@ export default function CandFactory($rootScope, $timeout){
           });
         });
       });
+    };
+
+    CandFactory.gmapAutocomplete = function(){
+
     };
 
   return CandFactory;

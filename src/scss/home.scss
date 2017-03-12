@@ -3,6 +3,9 @@
 a{
   color: $primary-color;
 }
+select{
+  background: none;
+}
 
 // header
 header{
@@ -34,14 +37,29 @@ header{
 }
 
 #application{
+  h3{
+    margin-bottom: 40px;
+  }
   ul{
     .candidature{
+      position: relative;
       border: solid 1px $primary-color;
       list-style: none;
-      margin: 15px 0;
+      margin: 0;
       padding: 15px;
-      >p{
+      p{
         margin: 5px 0;
+      }
+      pre{
+        margin-bottom: 10px
+      }
+      .delete{
+        position: absolute;
+        top: 15px;
+        right: 15px;
+      }
+      .update{
+        float: right;
       }
     }
   }
@@ -73,7 +91,8 @@ header{
       }
     }
   }
-  ul{
-    margin: 0;
+  .angular-google-map-container{
+    height: 300px;
+    width: 100%;
   }
 }

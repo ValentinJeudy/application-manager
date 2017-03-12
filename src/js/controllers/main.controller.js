@@ -1,7 +1,7 @@
 export default function mainCtrl($firebase, AuthFactory){
 
 
-  AuthFactory.checkAuth();
+   AuthFactory.checkAuth();
 
   this.logged = function(){
     return AuthFactory.isLogged;

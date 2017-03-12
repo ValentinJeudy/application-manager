@@ -12,20 +12,22 @@
     <body ng-app="TestApp">
     <div id="main-container" ng-controller="mainCtrl as $mctrl">
       <header>
-          <div class="top-bar row">
-            <div class="medium-6 small-12 column">
-              <h1>Gestionnaire de candidatures</h1>
-            </div>
-            <div class="top-bar-right medium-6 small-12 column">
-              <a ng-show="$mctrl.logged()" ng-click="$mctrl.logout()">Déconnexion</a>
-            </div>
+        <div class="top-bar row">
+          <div class="medium-6 small-12 column">
+            <h1>Gestionnaire de candidatures</h1>
           </div>
-        </header>
-
-        <div ng-view></div>
-
+          <div class="top-bar-right medium-6 small-12 column">
+            <a ng-show="$mctrl.logged()" ng-click="$mctrl.logout()">Déconnexion</a>
+          </div>
+        </div>
+      </header>
+      <div ng-view></div>
     </div>
+    <!-- <script src='//maps.googleapis.com/maps/api/js?sensor=false'></script> -->
+      <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3Am95OzAbKm9fAsXpaY_KUMoN-8TtRwI&libraries=places"></script>
 
+      <!-- <script src='//maps.googleapis.com/maps/api/js?sensor=false'></script>-->
       <script src="dist/bundle.js"></script>
+      <!-- <script src="node_modules/angular-google-places-autocomplete/dist/autocomplete.min.js"></script> -->
     </body>
 </html>

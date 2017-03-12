@@ -1,4 +1,4 @@
-export default function applicationCtrl(CandFactory){
+export default function applicationCtrl(CandFactory, uiGmapGoogleMapApi){
 
     this.formAddCand = {};
 
@@ -20,6 +20,12 @@ export default function applicationCtrl(CandFactory){
       CandFactory.updatePost(key, this.candidatures[key]);
     };
 
+    this.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 };
+
+    this.autoComplete = () => {
+
+    };
+
 };
 
-applicationCtrl.$inject = ["CandFactory"];
+applicationCtrl.$inject = ["CandFactory", "uiGmapGoogleMapApi"];
