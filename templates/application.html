@@ -1,12 +1,9 @@
 <div id="application" ng-controller="applicationCtrl as $ctrl" class="container row">
-  <form action="">
 
-      <!-- <div ng-autocomplete></div> -->
-      <ng-autocomplete></ng-autocomplete>
+  <!-- <form action="">
+      <div ng-autocomplete></div>
+  </form> -->
 
-  </form>
-
-  <pre>{{ $ctrl.place | json }}</pre>
 
   <div class="addCand medium-6 small-12 column">
     <div class="title">
@@ -23,7 +20,7 @@
         <option value="Non">Non</option>
       </select>
       <label for="entAddress">Adresse :</label>
-      <input name="entAddress" type="text" g-places-autocomplete ng-model="$ctrl.formAddCand.address">
+      <ng-autocomplete></ng-autocomplete>
       <a class="button" ng-click="$ctrl.addCand()">Ajouter candidature</a>
     </form>
   </div>

@@ -2,53 +2,72 @@ export default function ngAutocomplete(){
 
   return{
     restrict: 'E',
-    scope: {},
+    // scope: {
+    //   address: '&input',
+    //   placeId: 'placeId'
+    // },
     template:
     `
-    <input type="text" ng-model="$gacp.input" ng-change="$gacp.getPlace()">
-    <ul>
-      <li ng-repeat="place in $gacp.places">
-        <p>{{ place.description }}</p>
+    <input name="entAddress" type="text" ng-model="$gacp.input" ng-change="$gacp.getPlace()">
+    <ul class="predictions ng-hide" ng-show="$gacp.showPrediction()">
+      <li ng-repeat="place in $gacp.places" ng-click="$gacp
+      .getLocation(place.place_id, place.description)">
+        {{ place.description }}
       </li>
     </ul>
     `,
     controller ($http) {
-      this.getPlace = () => {
-        this.places = {};
 
-        $http({
+      var that = this;
+
+      that.places = [];
+
+      that.showPrediction = () => {
+        if(typeof that.places[0] == 'undefined'){
+          return false;
+        }else{
+          return true;
+        };
+      };
+
+      that.getPlace = () => {
+        console.log(that.placeId);
+          $http({
           method: 'GET',
-          url: 'https://maps.googleapis.com/maps/api/place/autocomplete/json?input=' + this.input + '&types=geocode&key=AIzaSyB3Am95OzAbKm9fAsXpaY_KUMoN-8TtRwI',
+          url: 'https://maps.googleapis.com/maps/api/place/autocomplete/json?input=' + that.input + '&types=geocode&key=AIzaSyB3Am95OzAbKm9fAsXpaY_KUMoN-8TtRwI',
           params: {
             key: 'AIzaSyB3Am95OzAbKm9fAsXpaY_KUMoN-8TtRwI',
-            input: this.input
+            input: that.input
           },
-          header: {
-            'Access-Control-Allow-Origin': '*',
-            'content-type': 'application/json',
-            'crossDomain' : 'true'
-          },
+          // headers: {
+          //   'Access-Control-Allow-Origin': '*',
+          //   'content-type': 'application/json',
+          //   'crossDomain' : 'true'
+          // },
           responseType: 'json'
         }).then( function successCallback(response){
-            // this.places = response.data.predictions;
-            console.log(response);
-
+            that.places = response.data.predictions;
         }, function errorCallback(error){
-          console.log(error);
+            console.log(error);
         });
-
-        // var input = document.getElementById('autocomplete');
-        // var places = google.maps.places;
-        // console.log(input);
-        // var autocomplete = new places.AutocompleteService(input)
-        // .getPlacePredictions({
-        //   input: input,
-        //   types: 'geocode'
-        //
-        // }, function(response){
-        //   console.log(response);
-        // });
+        that.showPrediction = () =>{
+          if(typeof that.places[0] == 'undefined'){
+            return false;
+          }else{
+            return true;
+          };
+        }
       };
+
+      that.getLocation = (id, description) => {
+        that.placeId = id;
+        that.input = description;
+        that.showPrediction = () => {
+          return false;
+        }
+      };
+
+
     },
     controllerAs: '$gacp',
     bindToController: true
