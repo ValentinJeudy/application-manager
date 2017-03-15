@@ -2,10 +2,10 @@ export default function ngAutocomplete(){
 
   return{
     restrict: 'E',
-    // scope: {
-    //   address: '&input',
-    //   placeId: 'placeId'
-    // },
+    scope: {
+      input: '=',
+      // placeId: '='
+    },
     template:
     `
     <input name="entAddress" type="text" ng-model="$gacp.input" ng-change="$gacp.getPlace()">
@@ -31,7 +31,6 @@ export default function ngAutocomplete(){
       };
 
       that.getPlace = () => {
-        console.log(that.placeId);
           $http({
           method: 'GET',
           url: 'https://maps.googleapis.com/maps/api/place/autocomplete/json?input=' + that.input + '&types=geocode&key=AIzaSyB3Am95OzAbKm9fAsXpaY_KUMoN-8TtRwI',
@@ -62,6 +61,7 @@ export default function ngAutocomplete(){
       that.getLocation = (id, description) => {
         that.placeId = id;
         that.input = description;
+        // console.log(that.placeId + that.input);
         that.showPrediction = () => {
           return false;
         }

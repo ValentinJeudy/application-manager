@@ -6,7 +6,7 @@ export default function applicationCtrl(CandFactory, uiGmapGoogleMapApi, $http){
 
     that.formUpdate = {};
 
-    that.address = '';
+    // that.address = '';
 
     CandFactory.getCand();
 
@@ -14,7 +14,7 @@ export default function applicationCtrl(CandFactory, uiGmapGoogleMapApi, $http){
 
     that.addCand = () => {
       // that.formAddCand.placeId = that.placeId;
-      console.log(that.address );
+      console.log(that.input );
 
       CandFactory.addCand(that.formAddCand);
     };
