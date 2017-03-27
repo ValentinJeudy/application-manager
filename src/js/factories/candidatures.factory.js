@@ -3,13 +3,13 @@ import firebase from 'firebase';
 
 export default function CandFactory($rootScope, $timeout){
 
-  var CandFactory = {
+  let CandFactory = {
     data: {
       candidatures: {}
     }
   };
-  var database = firebase.database();
-  var userId = firebase.auth().currentUser.uid;
+  let database = firebase.database();
+  let userId = firebase.auth().currentUser.uid;
 
   CandFactory.addCand = function(candidature){
     $timeout(function(){
@@ -63,9 +63,7 @@ export default function CandFactory($rootScope, $timeout){
       });
     };
 
-    CandFactory.gmapAutocomplete = function(){
 
-    };
 
   return CandFactory;
 

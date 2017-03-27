@@ -1,14 +1,14 @@
-export default function ngAutocomplete(){
+export default function ngAutocomplete(gmapFactory){
 
   return{
     restrict: 'E',
     scope: {
-      input: '=',
-      // placeId: '='
+      placeId: '=',
+      address: '='
     },
     template:
     `
-    <input name="entAddress" type="text" ng-model="$gacp.input" ng-change="$gacp.getPlace()">
+    <input name="entAddress" type="text" ng-model="$gacp.address" ng-change="$gacp.getPlaces()">
     <ul class="predictions ng-hide" ng-show="$gacp.showPrediction()">
       <li ng-repeat="place in $gacp.places" ng-click="$gacp
       .getLocation(place.place_id, place.description)">
@@ -22,35 +22,17 @@ export default function ngAutocomplete(){
 
       that.places = [];
 
-      that.showPrediction = () => {
-        if(typeof that.places[0] == 'undefined'){
-          return false;
-        }else{
-          return true;
-        };
-      };
+      that.placeId = "";
 
-      that.getPlace = () => {
-          $http({
-          method: 'GET',
-          url: 'https://maps.googleapis.com/maps/api/place/autocomplete/json?input=' + that.input + '&types=geocode&key=AIzaSyB3Am95OzAbKm9fAsXpaY_KUMoN-8TtRwI',
-          params: {
-            key: 'AIzaSyB3Am95OzAbKm9fAsXpaY_KUMoN-8TtRwI',
-            input: that.input
-          },
-          // headers: {
-          //   'Access-Control-Allow-Origin': '*',
-          //   'content-type': 'application/json',
-          //   'crossDomain' : 'true'
-          // },
-          responseType: 'json'
-        }).then( function successCallback(response){
-            that.places = response.data.predictions;
-        }, function errorCallback(error){
-            console.log(error);
-        });
+      that.getPlaces = () => {
+        gmapFactory.getPlaces(that.address);
+        that.places = gmapFactory.places;
+
+        console.log(that.placeId);
+
         that.showPrediction = () =>{
-          if(typeof that.places[0] == 'undefined'){
+          // console.log(that.places);
+          if(that.places.length === 0){
             return false;
           }else{
             return true;
@@ -59,19 +41,25 @@ export default function ngAutocomplete(){
       };
 
       that.getLocation = (id, description) => {
+        // console.log(id, description);
         that.placeId = id;
-        that.input = description;
-        // console.log(that.placeId + that.input);
+        that.address = description;
         that.showPrediction = () => {
           return false;
         }
+      }
+
+      that.showPrediction = () => {
+        if(that.places.length === 0){
+          return false;
+        }else{
+          return true;
+        };
       };
-
-
     },
     controllerAs: '$gacp',
     bindToController: true
   }
-
-
 };
+
+// ngAutocomplete.$inject = ["gmapFactory"];

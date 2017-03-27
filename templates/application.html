@@ -1,10 +1,5 @@
 <div id="application" ng-controller="applicationCtrl as $ctrl" class="container row">
 
-  <!-- <form action="">
-      <div ng-autocomplete></div>
-  </form> -->
-
-
   <div class="addCand medium-6 small-12 column">
     <div class="title">
       <h3>Ajouter une candidature</h3>
@@ -20,7 +15,7 @@
         <option value="Non">Non</option>
       </select>
       <label for="entAddress">Adresse :</label>
-      <ng-autocomplete></ng-autocomplete>
+      <ng-autocomplete place-id="$ctrl.formAddCand.placeId" address="$ctrl.formAddCand.address"></ng-autocomplete>
       <a class="button" ng-click="$ctrl.addCand()">Ajouter candidature</a>
     </form>
   </div>
@@ -34,7 +29,8 @@
             <p>Candidature envoyée :<pre>{{ candidature.sent }}</pre></p>
             <p>{{ candidature.address }}</p>
             <p>Localisation : </p>
-            <ui-gmap-google-map center='$ctrl.map.center' zoom='$ctrl.map.zoom'></ui-gmap-google-map>
+            <gmap-display place-id="candidature.placeId"></gmap-display>
+            <!-- <ui-gmap-google-map center='$ctrl.map.center' zoom='$ctrl.map.zoom'></ui-gmap-google-map> -->
             <a href="{{ candidature.link }}" target="_blank">Accéder à l'offre</a>
             <a class="delete" ng-click="$ctrl.deleteCandidature(key)">supprimer</a>
             <a class='update' ng-click="show=true">Modifier candidature</a>

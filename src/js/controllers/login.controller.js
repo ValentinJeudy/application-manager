@@ -1,4 +1,4 @@
-export default function loginCtrl($scope, $firebase, AuthFactory, $location, $window){
+export default function loginCtrl(AuthFactory){
   this.formLogin = {};
   this.formCreate =  {};
   this.login = () => {
@@ -9,8 +9,8 @@ export default function loginCtrl($scope, $firebase, AuthFactory, $location, $wi
     AuthFactory.createUser(this.formCreate);
   };
 
-  
+
 
 };
 
-loginCtrl.$inject = ["$scope", "$firebase", "AuthFactory", "$location", "$window"];
+loginCtrl.$inject = ["AuthFactory"];
