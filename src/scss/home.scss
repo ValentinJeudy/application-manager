@@ -100,7 +100,6 @@ header{
     position: relative;
     display: block;
     .predictions{
-      // display: none;
       position: absolute;
       width: 100%;
       top: 39px;
@@ -126,6 +125,14 @@ header{
           border-top: solid 1px $primary-color;
         }
       }
+    }
+  }
+  gmap-display{
+    display: block;
+    height: 300px;
+    width: 100%;
+    >div{
+      height: 100%;
     }
   }
 }

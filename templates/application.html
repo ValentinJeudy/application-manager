@@ -29,7 +29,7 @@
             <p>Candidature envoyée :<pre>{{ candidature.sent }}</pre></p>
             <p>{{ candidature.address }}</p>
             <p>Localisation : </p>
-            <gmap-display place-id="candidature.placeId"></gmap-display>
+            <gmap-display key="key" place-id="candidature.placeId"></gmap-display>
             <!-- <ui-gmap-google-map center='$ctrl.map.center' zoom='$ctrl.map.zoom'></ui-gmap-google-map> -->
             <a href="{{ candidature.link }}" target="_blank">Accéder à l'offre</a>
             <a class="delete" ng-click="$ctrl.deleteCandidature(key)">supprimer</a>

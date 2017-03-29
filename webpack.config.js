@@ -29,6 +29,9 @@ module.exports = {
         loader: ["style-loader", "css-loader", "sass-loader"]
       }
     ]
+  },
+  devServer: {
+    headers: { "Access-Control-Allow-Origin": "*" }
   }
 
 }

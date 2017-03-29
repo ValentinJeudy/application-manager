@@ -22,8 +22,6 @@ export default function ngAutocomplete(gmapFactory){
 
       that.places = [];
 
-      that.placeId = "";
-
       that.getPlaces = () => {
         gmapFactory.getPlaces(that.address);
         that.places = gmapFactory.places;

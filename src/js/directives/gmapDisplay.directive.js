@@ -1,19 +1,22 @@
-export default function gmapDisplay(gmapFactory){
+export default function gmapDisplay(gmapFactory, $timeout){
 
   return{
     restrict: 'E',
     scope: {
-      placeId: '='
+      placeId: '=',
+      key: '='
     },
     template:
     `
-    <div ng-model="$gmdp.map"></div>
+    <div id="{{ $gmdp.key }}" class="mapContainer"></div>
     `,
     controller ($http) {
 
       var that = this;
-      // gmapFactory.displayMap(that.map, that.placeId);
 
+      $timeout( () => {
+        gmapFactory.displayMap(that.key, that.placeId);
+      }, 500);
     },
     controllerAs: '$gmdp',
     bindToController: true

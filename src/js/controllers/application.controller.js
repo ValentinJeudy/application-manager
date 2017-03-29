@@ -6,8 +6,6 @@ export default function applicationCtrl(CandFactory, uiGmapGoogleMapApi, $http, 
 
     that.formUpdate = {};
 
-    that.placeId = "";
-
     CandFactory.getCand();
 
     that.candidatures = CandFactory.data.candidatures;

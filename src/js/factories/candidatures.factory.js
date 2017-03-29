@@ -8,6 +8,7 @@ export default function CandFactory($rootScope, $timeout){
       candidatures: {}
     }
   };
+
   let database = firebase.database();
   let userId = firebase.auth().currentUser.uid;
 
