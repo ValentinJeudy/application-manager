@@ -2,7 +2,9 @@ export default function applicationCtrl(CandFactory, uiGmapGoogleMapApi, $http, 
 
     var that = this;
 
-    that.formAddCand = {};
+    that.formAddCand = {
+      location: {}
+    };
 
     that.formUpdate = {};
 

@@ -15,7 +15,7 @@
         <option value="Non">Non</option>
       </select>
       <label for="entAddress">Adresse :</label>
-      <ng-autocomplete place-id="$ctrl.formAddCand.placeId" address="$ctrl.formAddCand.address"></ng-autocomplete>
+      <ng-autocomplete place-id="$ctrl.formAddCand.placeId" address="$ctrl.formAddCand.address" location="$ctrl.formAddCand.location"></ng-autocomplete>
       <a class="button" ng-click="$ctrl.addCand()">Ajouter candidature</a>
     </form>
   </div>

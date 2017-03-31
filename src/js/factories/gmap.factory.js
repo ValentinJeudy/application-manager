@@ -8,27 +8,57 @@ let gmapFactory = {
 gmapFactory.getPlaces = function(placeSearched) {
   $http({
   method: 'GET',
-  url: 'https://maps.googleapis.com/maps/api/place/autocomplete/json?input=' + placeSearched + '&types=geocode&key=AIzaSyB3Am95OzAbKm9fAsXpaY_KUMoN-8TtRwI',
+  url: 'https://maps.googleapis.com/maps/api/place/autocomplete/json',
   params: {
-    key: 'AIzaSyB3Am95OzAbKm9fAsXpaY_KUMoN-8TtRwI',
-    input: placeSearched
+    input: placeSearched,
+    key: 'AIzaSyB3Am95OzAbKm9fAsXpaY_KUMoN-8TtRwI'
   },
   responseType: 'json'
   })
-  .then( function successCallback(response){
-      gmapFactory.places = response.data.predictions;
+  .then( function successCallback(res){
+      gmapFactory.places = res.data.predictions;
+      // console.log(res);
 
-  }, function errorCallback(error){
-      console.log(error);
+  }, function errorCallback(err){
+      console.log(err);
   });
 };
 
+gmapFactory.getPlaceDetails = function(placeId) {
+  $http({
+    method: 'GET',
+    // url: 'https://maps.googleapis.com/maps/api/place/details/json',
+    url: 'https://maps.googleapis.com/maps/api/place/details/json',
+    params: {
+      placeid: placeId,
+      key: 'AIzaSyB3Am95OzAbKm9fAsXpaY_KUMoN-8TtRwI'
+    },
+    // headers: {
+      // "Access-Control-Allow-Origin": "*",
+      // "Access-Control-Allow-Credentials": "true",
+      // "Access-Control-Allow-Headers": "Content-Type, Content-Length, X-Requested-With",
+      // "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS"
+    // },
+    responseType: 'json'
+  })
+  .then( function successCallback(res){
+
+      return res.data.result.geometry.location;
+
+      // gmapFactory.lat = res.data.result.geometry.location.lat;
+      // gmapFactory.lng = res.data.result.geometry.location.lng;
+
+      // console.log(gmapFactory.location);
+  }, function errorCallback(err){
+    console.log(err);
+  });
+};
 
 gmapFactory.displayMap = function(mapContainer, placeId) {
 
     let elem = document.querySelector("#" + mapContainer);
     // google.maps.event.addDomListener(window, 'load', initialize);
-    console.log(elem);
+    // console.log(elem);
 
     // function initialize() {
       new google.maps.Map(elem, {

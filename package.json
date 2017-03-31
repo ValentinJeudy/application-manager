@@ -28,7 +28,8 @@
     "webpack-dev-server": "^2.3.0"
   },
   "scripts": {
-    "start": "webpack-dev-server --hot --inline --content-base ./ --historyApiFallback"
+    "start": "webpack-dev-server --hot --inline --content-base ./ --historyApiFallback",
+    "build": "webpack --display-error-details --progress -p"
   },
   "author": "",
   "license": "ISC"
