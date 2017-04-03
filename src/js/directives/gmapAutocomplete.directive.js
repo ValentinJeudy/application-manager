@@ -1,12 +1,11 @@
-export default function ngAutocomplete(gmapFactory){
+export default function ngAutocomplete(gmapFactory, $timeout, $rootScope){
 
   return{
     restrict: 'E',
     scope: {
       placeId: '=',
-      address: '='
-      // location: '='
-      // location="$ctrl.formAddCand.location"
+      address: '=',
+      location: '='
     },
     template:
     `
@@ -23,15 +22,18 @@ export default function ngAutocomplete(gmapFactory){
       var that = this;
 
       that.places = [];
-      // that.location = {};
 
       that.getPlaces = () => {
-        gmapFactory.getPlaces(that.address);
-        that.places = gmapFactory.places;
+
+        gmapFactory.getPlaces(that.address)
+          .then((places) => {
+            that.places = places;
+          });
+
         that.showPrediction = () =>{
-          if(that.places.length === 0){
+          if (that.places.length === 0) {
             return false;
-          }else{
+          } else {
             return true;
           };
         }
@@ -39,19 +41,13 @@ export default function ngAutocomplete(gmapFactory){
 
       that.getLocation = (id, description) => {
 
-        that.location = gmapFactory.getPlaceDetails(id);
-
-        // that.lat = gmapFactory.lat;
-        // that.lng = gmapFactory.lng;
-
-        console.log(that.location);
-
-
-
+        gmapFactory.getPlaceDetails(id)
+          .then((location) => {
+            that.location = location;
+          });
 
         that.placeId = id;
         that.address = description;
-
 
         that.showPrediction = () => {
           return false;

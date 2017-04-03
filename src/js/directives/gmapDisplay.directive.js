@@ -8,15 +8,23 @@ export default function gmapDisplay(gmapFactory, $timeout){
     },
     template:
     `
-    <div id="{{ $gmdp.key }}" class="mapContainer"></div>
+    <div class="mapContainer"></div>
     `,
+    link: function(scope, element, attrs){
+      // console.log(element[0]);
+
+      let that = this;
+
+      // scope.$onInit = () => {
+        gmapFactory.displayMap(element[0] , that.placeId);
+      // };
+
+    },
     controller ($http) {
 
       var that = this;
 
-      $timeout( () => {
-        gmapFactory.displayMap(that.key, that.placeId);
-      }, 500);
+
     },
     controllerAs: '$gmdp',
     bindToController: true

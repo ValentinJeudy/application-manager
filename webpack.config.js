@@ -32,13 +32,11 @@ module.exports = {
 
   },
   devServer: {
+    proxy: {
+      "/api": "https://maps.googleapis.com"
+    },
     headers: {
-      // "Access-Control-Allow-Origin": "*",
-      // "Access-Control-Allow-Credentials": "true",
-      // "Access-Control-Allow-Headers": "Content-Type, X-Requested-With",
-      // "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS"
+      "Access-Control-Allow-Origin": "*"
     }
   }
-
-
 }
