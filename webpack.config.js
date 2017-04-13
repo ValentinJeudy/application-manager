@@ -1,6 +1,6 @@
 var path = require('path');
 var root = path.resolve(__dirname);
-// var ExtractTextPlugin = require("extract-text-webpack-plugin");
+// var ExtractTextPlugin = require('extract-text-webpack-plugin');
 // var extractCSS = new ExtractTextPlugin('bundle.css');
 var prod = process.argv.indexOf('-p') > -1;
 
@@ -13,7 +13,8 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, './dist'),
     filename: 'bundle.js',
-    publicPath: '/dist/'
+    publicPath: '/dist/',
+    crossOriginLoading: 'use-credentials'
   },
   module:{
     loaders:[
@@ -26,17 +27,27 @@ module.exports = {
       {
         test: /\.scss$/,
         exclude: /node_modules/,
-        loader: ["style-loader", "css-loader", "sass-loader"]
+        loader: ['style-loader', 'css-loader', 'sass-loader']
       }
     ]
-
   },
   devServer: {
     proxy: {
-      "/api": "https://maps.googleapis.com"
+      '/api': {
+        target: 'https://maps.googleapis.com/',
+        secure: false,
+        pathRewrite: {'^/api' : ''},
+        changeOrigin: true
+      }
     },
+    inline: true,
+    historyApiFallback: true,
+    contentBase: __dirname,
+    // hot: true,
     headers: {
-      "Access-Control-Allow-Origin": "*"
-    }
+       "Access-Control-Allow-Origin": "http://localhost:8080", "Access-Control-Allow-Credentials": "true"
+    },
+
+
   }
 }

@@ -24,9 +24,10 @@ export default function ngAutocomplete(gmapFactory, $timeout, $rootScope){
       that.places = [];
 
       that.getPlaces = () => {
+        // console.log(gmapFactory);
 
         gmapFactory.getPlaces(that.address)
-          .then((places) => {
+          .then( (places) => {
             that.places = places;
           });
 
@@ -44,6 +45,7 @@ export default function ngAutocomplete(gmapFactory, $timeout, $rootScope){
         gmapFactory.getPlaceDetails(id)
           .then((location) => {
             that.location = location;
+            console.log(that.location);
           });
 
         that.placeId = id;
@@ -52,7 +54,7 @@ export default function ngAutocomplete(gmapFactory, $timeout, $rootScope){
         that.showPrediction = () => {
           return false;
         }
-      }
+      };
 
       that.showPrediction = () => {
         if(that.places.length === 0){

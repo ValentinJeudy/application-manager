@@ -5,9 +5,11 @@
   "main": "",
   "dependencies": {
     "angular": "^1.6.2",
+    "angular-route": "^1.6.2",
     "angularfire": "^2.3.0",
     "babel-core": "^6.22.1",
-    "firebase": "^3.6.9"
+    "firebase": "^3.6.9",
+    "foundation-sites": "^6.3.0"
   },
   "devDependencies": {
     "angular-google-maps": "^2.4.1",
@@ -28,8 +30,9 @@
     "webpack-dev-server": "^2.3.0"
   },
   "scripts": {
-    "start": "webpack-dev-server --hot --inline --content-base ./ --historyApiFallback",
-    "build": "webpack --display-error-details --progress -p"
+    "start": "webpack-dev-server --hot",
+    "build": "webpack --display-error-details --progress -p",
+    "test": "webpack --progress"
   },
   "author": "",
   "license": "ISC"

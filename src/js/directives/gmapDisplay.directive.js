@@ -4,7 +4,8 @@ export default function gmapDisplay(gmapFactory, $timeout){
     restrict: 'E',
     scope: {
       placeId: '=',
-      key: '='
+      key: '=',
+      location: '='
     },
     template:
     `
@@ -20,12 +21,12 @@ export default function gmapDisplay(gmapFactory, $timeout){
       // };
 
     },
-    controller ($http) {
-
-      var that = this;
-
-
-    },
+    // controller ($http) {
+    //
+    //   var that = this;
+    //
+    //
+    // },
     controllerAs: '$gmdp',
     bindToController: true
   }

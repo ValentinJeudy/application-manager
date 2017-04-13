@@ -2,9 +2,7 @@ export default function applicationCtrl(CandFactory, uiGmapGoogleMapApi, $http, 
 
     var that = this;
 
-    that.formAddCand = {
-      location: {}
-    };
+    that.formAddCand = {};
 
     that.formUpdate = {};
 
@@ -13,10 +11,8 @@ export default function applicationCtrl(CandFactory, uiGmapGoogleMapApi, $http, 
     that.candidatures = CandFactory.data.candidatures;
 
     that.addCand = () => {
-      // that.formAddCand.placeId = that.placeId;
-      console.log(that.placeId);
-
       CandFactory.addCand(that.formAddCand);
+      that.formAddCand = {};
     };
 
     that.deleteCandidature = (key) => {
