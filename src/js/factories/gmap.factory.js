@@ -5,9 +5,6 @@ let gmapFactory = {
 };
 
 
-// console.log(user);
-
-
 gmapFactory.getPlaces = function(placeSearched) {
   const defer = $q.defer();
   $http({
@@ -17,22 +14,11 @@ gmapFactory.getPlaces = function(placeSearched) {
     input: placeSearched,
     key: 'AIzaSyB3Am95OzAbKm9fAsXpaY_KUMoN-8TtRwI'
   },
-  // headers: {
-    // 'Authorization': undefined
-  //   "Access-Control-Allow-Origin": "*",
-  //   "Access-Control-Allow-Methods": "GET",
-  //   "Access-Control-Allow-Headers": "content-type"
-  // },
-  // mode: 'no-cors',
   responseType: 'json'
-  // skipAuthorization: true
   })
   .then( function successCallback(res){
     console.log(gmapFactory.places, 'factory');
       gmapFactory.places = res.data.predictions;
-      // $sce.trustAsResourceUrl(
-      //   res.data.predictions
-      // );
       defer.resolve(gmapFactory.places);
 
   }, function errorCallback(err){
@@ -69,10 +55,10 @@ gmapFactory.getPlaceDetails = function(placeId) {
 
 gmapFactory.displayMap = function(mapContainer, placeId, location) {
 
+    console.log(location);
     let elem =  angular.element(mapContainer).find('div');
-console.log(location);
-      new google.maps.Map(elem[0], {
-        center: {lat: location[0], lng: location[1]},
+      new google.maps.Marker(elem[0], {
+        center: {lat: location.lat, lng: location.lng},
         zoom: 15
       });
 
@@ -80,8 +66,5 @@ console.log(location);
     //   address: placeId
     // })
 };
-
-
   return gmapFactory;
-
 };

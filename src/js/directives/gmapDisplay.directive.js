@@ -12,21 +12,15 @@ export default function gmapDisplay(gmapFactory, $timeout){
     <div class="mapContainer"></div>
     `,
     link: function(scope, element, attrs){
-      // console.log(element[0]);
-
-      let that = this;
-
-      // scope.$onInit = () => {
-        gmapFactory.displayMap(element[0] , that.placeId);
-      // };
+        console.log(element);
+        scope.map = element[0];
+  },
+    controller ($http) {
+        console.log(this.mapContainer, this.placeId, this.location);
+      var that = this;
+      gmapFactory.displayMap(this.mapcontainer, this.placeId, this.location);
 
     },
-    // controller ($http) {
-    //
-    //   var that = this;
-    //
-    //
-    // },
     controllerAs: '$gmdp',
     bindToController: true
   }
